@@ -12,5 +12,6 @@ module.exports = {
         level: process.env.LOG_LEVEL || 'silly',
     },
     conn_url: process.env.QUEUE_CONN_URL,
-    db_url: process.env.DB_CONN_URL
+    db_url: process.env.DB_CONN_URL,
+    notification_event_queue: process.env.NOTIFICATION_EVENT_QUEUE
 };

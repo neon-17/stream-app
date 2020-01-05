@@ -31,11 +31,11 @@ class QueueService {
             await channel.prefetch(1);
             channel.consume(this.queue, async(msg) => {
                 const params = JSON.parse(msg.content.toString())
-                if (await callback(params)) {
+
+                if (await callback(params)) { // calling the custom callback which processes the msg
                     await channel.ack(msg);
                     resolve('processed' + msg.content.toString())
                 } else {
-                    console.log('something went wrong')
                     channel.nack(msg);
                     reject('something went wrong');
                 }
