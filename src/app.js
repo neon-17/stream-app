@@ -21,3 +21,12 @@ app.listen(config.port, err => {
     }
     logger.info(`Server listening on port: ${config.port}`);
 });
+
+process
+    .on('unhandledRejection', (reason, p) => {
+        logger.error(reason, 'Unhandled Rejection at Promise', p);
+    })
+    .on('uncaughtException', err => {
+        logger.error(err, 'Uncaught Exception thrown');
+        process.exit(1);
+    });
